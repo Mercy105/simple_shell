@@ -42,14 +42,14 @@ void execute_command(char *command)
 	}
 }
 /**
- * rum_shell - program to run the shell
+ * run_shell - program to run the shell
  */
 void run_shell(void)
 {
 	char buffer[100];
 	char command[100];
-
 	size_t len = strlen(buffer);
+
 	while (1)
 	{
 		display_prompt();
