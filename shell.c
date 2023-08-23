@@ -1,9 +1,10 @@
 #include "shell.h"
 /**
- * main - main program
+ * main - Entry point
+ * description: where execution of a simple shell program starts
  * @argc: input argument
  * @argv: input argument
- * Return: 0
+ * Return: Always 0 (success)
  */
 int main(int argc, char *argv[])
 {

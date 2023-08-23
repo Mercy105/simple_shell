@@ -2,6 +2,7 @@
 /**
  * _ext - exiting shell program
  * @pth: input
+ * Return: Always 0
  */
 void _ext(char *pth)
 {

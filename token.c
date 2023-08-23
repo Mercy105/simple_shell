@@ -3,6 +3,7 @@
  * get_tokens - gets tokens from string
  * @args: input
  * @pth: input
+ * Return: tokens
  */
 void get_tokens(char *args[], char *pth)
 {
