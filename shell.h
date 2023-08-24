@@ -19,7 +19,7 @@ void display_prompt(void);
 void _ext(char *pth);
 void print_environment(char *pth);
 void get_tokens(char *args[], char *pth);
-/*int _execve(const char *command, char *const argv[], char *const environ[]);*/
+/*int _execve(const char *command, char *const argv[], char *const envir[]);*/
 /*pid_t wait_pid(pid_t pid, int *wstatus, int options);*/
 /*char *path_checker(char *pth);*/
 

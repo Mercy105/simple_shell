@@ -3,10 +3,10 @@
  * _execve - execve
  * @command: input argument
  * @argv: input argument
- * @environ: input argument
+ * @envir: input argument
  * Return: i
  */
-int _execve(const char *command, char *const argv[], char *const environ[])
+int _execve(const char *command, char *const argv[], char *const envir[])
 {
 	pid_t c_pid = fork();
 	int i;
@@ -18,7 +18,7 @@ int _execve(const char *command, char *const argv[], char *const environ[])
 	}
 	if (c_pid == 0)
 	{
-		execve(command, argv, environ);
+		execve(command, argv, envir);
 		perror("execve");
 		exit(EXIT_FAILURE);
 	}
