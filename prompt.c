@@ -1,22 +1,42 @@
 #include "shell.h"
-#include <dirent.h>
 /**
- * display_prompt - used to display shell prompt
- * Return: Standard output
+ * prompt - displays command prompt
+ * Return: command
  */
-void display_prompt(void)
+char **prompt(void)
 {
-	DIR *d;
-	struct dirent *dir;
+	char *cmd = NULL, *token,
+	*prompt_str = "$ ", *delim = " ";
+	size_t z = 512;
+	char **args = malloc(sizeof(char *) * z);
+	int r, x = 0, w = 0;
+	int j;
 
-	printf("$ ");
-	d = opendir(".");
-	if (d)
+	j = str_len(prompt_str);
+	if (args == NULL)
 	{
-		while ((dir = readdir(d)) != NULL)
-		{
-			printf("%s\n", dir->d_name);
-		}
-		closedir(d);
+		perror("Malloc Error");
+		return (NULL);
 	}
+	if (isatty(STDIN_FILENO))
+		w = write(STDOUT_FILENO, prompt_str, j);
+	if (w < 0)
+	{
+		perror("Write Error");
+		return (NULL);
+	}
+	r = getline(&cmd, &z, stdin);
+	if (r == -1)
+		return (NULL);
+	if (str_len(cmd) == 0)
+		return (NULL);
+	cmd[str_len(cmd) - 1] = '\0';
+	token = strtok(cmd, delim);
+	while (token != NULL)
+	{
+		args[x] = token;
+		x += 1;
+		token = strtok(NULL, delim);
+	}
+	return (args);
 }

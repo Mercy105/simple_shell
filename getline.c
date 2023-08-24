@@ -1,44 +1,28 @@
 #include "shell.h"
 /**
- * _getline - my own getline
- * @line: argument input
- * @m: argument input
- * @stream: argument input
- * Return: len
- */
-ssize_t _getline(char **line, size_t *m, FILE *stream)
+ * _getline - readline
+ * @strnptr: shows where string is written
+ * @sz: size of the string
+ * @desc: identifies an open file
+ * Return: -1 or length of the line read
+*/
+ssize_t _getline(char **strnptr, size_t *sz, FILE *desc)
 {
-	size_t len = 0, m_size;
-	int c;
-	char *m_buff;
+	char *m_buffer = malloc(sizeof(char *) * *sz);
+	int x;
 
-	if (*line == NULL || m == NULL || stream == NULL)
+	if (m_buffer == NULL)
 		return (-1);
-	if (*line == NULL || *m == 0)
-	{
-		*m = IBS; /*INITIAL_BUFFER_SIZE*/
-		*line = (char *)malloc(*m);
-		if (*line == NULL)
-			return (-1);
-	}
-	c = fgetc(stream);
-	while (c)
-	{
-		if (len >= *m - 1)
-		{
-			m_size = *m * BGF; /*BUFFER_GROWING_FUNCTION*/
-			m_buff = (char *)realloc(*line, m_size);
-			if (m_buff == NULL)
-				return (-1);
-			*line = m_buff;
-			*m = m_size;
-		}
-		(*line)[len++] = c;
-		if (c == '\n')
-			break;
-	}
-	if (len == 0 && c == EOF)
+	if (desc != NULL)
+	x = read(STDIN_FILENO, m_buffer, *sz);
+
+	if (x  == 0)
 		return (-1);
-	(*line)[len] = '\0';
-	return (len);
+
+	if (str_len(m_buffer) > 0)
+	{
+		m_buffer[str_len(m_buffer)] = '\0';
+		strnptr[0] = m_buffer;
+	}
+	return (str_len(m_buffer));
 }

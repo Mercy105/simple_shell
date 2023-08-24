@@ -9,27 +9,29 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <errno.h>
-#define MCL 100 /*MAXIMUM COMMAND LENGTH*/
-#define IBS 64 /*INITIAL BUFFER SIZE*/
-#define BGF 2 /*BUFFER GROWING FACTOR*/
-
+#include <signal.h>
+#ifdef _WIN32
+  #define ON_WIN 1
+#else
+  #define ON_WIN 0
+#endif
 extern char **environ;
 
-void display_prompt(void);
-void _ext(char *pth);
-void print_environment(char *pth);
-void get_tokens(char *args[], char *pth);
-/*int _execve(const char *command, char *const argv[], char *const envir[]);*/
-/*pid_t wait_pid(pid_t pid, int *wstatus, int options);*/
-/*char *path_checker(char *pth);*/
-
-/*string function*/
-size_t _strlen(const char *s);
-/*int _strcmp(const char *s1, const char s2);*/
-size_t _strcspn(const char *str, const char *remaining);
-char *_strtok(char *str, const char *input);
-
-/*getline*/
-ssize_t getline(char **line, size_t *m, FILE *stream);
+char **prompt(void);
+int main(int argc, char *argv[]);
+/*ssize_t _getline(char *strnptr, size_t *sz, FILE *desc);*/
+int str_cmp(char *a, char *b);
+size_t str_len(char *s);
+int str_contains(char *a, char *b);
+char *str_cat(char *a, char *b);
+char *get_env(char *env);
+char **get_path_cmds(void);
+char *get_command_in_path(char *cmd);
+char **tokenizer(char *str, const char *delimeter);
+int check_builtin(char **args);
+void print_environment(void);
+void shell(char *filename);
+void execute_command(char *args[], char *filename);
+void new_line(int signal);
 
 #endif

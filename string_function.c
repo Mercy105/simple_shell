@@ -1,52 +1,90 @@
 #include "shell.h"
 /**
- * _strlen - returns the length of string
- * @s: argument input
- * Return: m
- */
-size_t _strlen(const char *s)
+ * str_cmp - compares two strings
+ * @a: first string
+ * @b: second string
+ * Return: -1, or 0
+*/
+int str_cmp(char *a, char *b)
 {
-	size_t m;
+	int x = 0;
 
-	m = strlen(s);
-	return (m);
+	while (a[x] != '\0' && b[x] != '\0' && a[x] == b[x])
+		x += 1;
+	if (a[x] == '\0' && a[x] == '\0')
+		return (0);
+	return (-1);
 }
 /**
- * _strcmp - compares two strings
- * @s1: string one
- * @s2: string two
- * Return: out
+ * str_len - measure length of a string
+ * @s: string argument
+ * Return: length of a string
  */
-int _strcmp(const char *s1, const char *s2)
+size_t str_len(char *s)
 {
-	int out;
+	size_t len = 0;
 
-	out = strcmp(s1, s2);
-	return (out);
+	while (s[len] != '\0')
+		len += 1;
+	return (len);
 }
 /**
- * _strcspn - gets legth prefix
- * @str: argument input
- * @remaining: argument 2
- * Return: count
+ * str_contains - checks if a string contains another string
+ * @a: string one
+ * @b: string two
+ * Return: 1 or 0
  */
-size_t _strcspn(const char *str, const char *remaining)
+int str_contains(char *a, char *b)
 {
-	size_t ct = 0;
+	size_t i = 0, j, x = 0;
 
-	ct = strcspn(str, remaining);
-	return (ct);
+	if (str_len(a) == 0 || str_len(b) == 0)
+		return (0);
+	while (i < str_len(a))
+	{
+		j = 0;
+
+		while (j < str_len(b))
+		{
+			if (a[i + j] == b[j])
+				x += 1;
+			j += 1;
+		}
+		if (x == str_len(b))
+			return (1);
+
+		i += 1;
+	}
+	return (0);
 }
 /**
- * _strtok - extracts token from string
- * @str: input 1
- * @input: input 2
- * Return: token
+ * str_cat - concatenetes two strings
+ * @a: first string
+ * @b: second string
+ * Return:  new string
  */
-char *_strtok(char *str, const char *input)
+char *str_cat(char *a, char *b)
 {
-	char *token;
+	int i = 0, j = 0;
+	char *s = malloc(sizeof(char) * (str_len(a) + str_len(b)));
 
-	token = strtok(str, input);
-	return (token);
+	if (s == NULL)
+	{
+		perror("malloc");
+		exit(0);
+	}
+	while (a[i] != '\0')
+	{
+		s[j] = a[i];
+		i += 1;
+		j += 1;
+	}
+	i = 0;
+	while (b[i] != '\0')
+	{
+		s[j] = b[i];
+		i += 1;
+		j += 1;
+	}
+	return (s);
 }
