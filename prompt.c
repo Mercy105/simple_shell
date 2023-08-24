@@ -5,6 +5,17 @@
  */
 void display_prompt(void)
 {
-	printf("simple_shell$ ");
-	fflush(stdout);
+	printf("$ ");
+	DIR *d;
+	struct dirent *dir;
+
+	d = opendir(".");
+	if (d)
+	{
+		while ((dir = readir(d)) != NULL)
+		{
+			printf("%s\n", dir->d_name);
+		}
+		closedir(d);
+	}
 }
