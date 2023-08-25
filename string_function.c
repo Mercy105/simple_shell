@@ -1,4 +1,6 @@
 #include "shell.h"
+#define _SHELL_H_
+
 /**
  * str_cmp - compares two strings
  * @a: first string

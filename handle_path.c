@@ -1,4 +1,6 @@
 #include "shell.h"
+#define _SHELL_H_
+
 /**
  * path_checker - check if command exists in a path
  * @pth: argument input
