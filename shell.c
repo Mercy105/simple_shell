@@ -1,5 +1,4 @@
 #include "shell.h"
-#define _SHELL_H_
 
 /**
  * main - entry point
@@ -7,7 +6,7 @@
  * @argv: argument input
  * Return: always 0
 */
-int main(__attribute__((unused))int  argc, char *argv[])
+int main( int  argc, char *argv[])
 {
 	signal(SIGINT, &new_line);
 	shell(argv[0]);
