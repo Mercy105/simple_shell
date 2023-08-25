@@ -26,3 +26,4 @@ ssize_t _getline(char **strnptr, size_t *sz, FILE *desc)
 	}
 	return (str_len(m_buffer));
 }
+
