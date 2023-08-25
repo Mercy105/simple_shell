@@ -27,3 +27,4 @@ char *path_checker(char *pth)
 	}
 	return (NULL);
 }
+
