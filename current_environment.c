@@ -1,5 +1,4 @@
 #include "shell.h"
-#define _SHELL_H_
 
 /**
  * get_env - obtains evironment variable

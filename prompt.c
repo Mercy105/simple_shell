@@ -1,5 +1,4 @@
 #include "shell.h"
-#define _SHELL_H_
 
 /**
  * prompt - displays command prompt
