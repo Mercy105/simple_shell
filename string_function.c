@@ -88,3 +88,4 @@ char *str_cat(char *a, char *b)
 	}
 	return (s);
 }
+
